@@ -1,11 +1,7 @@
-//  Copyright © 2019 notiflux. All rights reserved.
-
-import Foundation
-
-struct Miscellaneous: Codable {
-    var boot: Boot?
-    var debug: Debug?
-    var security: Security?
+class Miscellaneous: Codable {
+    var boot: Boot? = .init()
+    var debug: Debug? = .init()
+    var security: Security? = .init()
 
     private enum CodingKeys: String, CodingKey {
         case boot = "Boot"
@@ -13,7 +9,7 @@ struct Miscellaneous: Codable {
         case security = "Security"
     }
 
-    struct Boot: Codable {
+    class Boot: Codable {
         var consoleMode: String?
         var consoleBehaviourOS: ConsoleBehaviour?
         var consoleBehaviourUI: String?
@@ -40,7 +36,7 @@ struct Miscellaneous: Codable {
         }
     }
 
-    struct Debug: Codable {
+    class Debug: Codable {
         var disableWatchDog: Bool? = false
         var displayDelay: Int? = 0
         var displayLevel: Int64? = 0
@@ -54,7 +50,7 @@ struct Miscellaneous: Codable {
         }
     }
 
-    struct Security: Codable {
+    class Security: Codable {
         var exposeSensitiveData: Int? = 2
         var haltLevel: Int64? = 0x8000_0000
         var requireSignature: Bool? = true

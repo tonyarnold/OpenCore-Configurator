@@ -14,10 +14,10 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "8100423F1ECA33DF009FE633"
-               BuildableName = "OpenCore Configurator.app"
-               BlueprintName = "OpenCore Configurator"
-               ReferencedContainer = "container:OpenCore Configurator.xcodeproj">
+               BlueprintIdentifier = "8055B0371E201C5D009DC3EE"
+               BuildableName = "OrderedDictionary.framework"
+               BlueprintName = "OrderedDictionary-Mac"
+               ReferencedContainer = "container:OrderedDictionary.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -28,14 +28,24 @@
       selectedLauncherIdentifier = "Xcode.DebuggerFoundation.Launcher.LLDB"
       shouldUseLaunchSchemeArgsEnv = "YES">
       <Testables>
+         <TestableReference
+            skipped = "NO">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "8055B0401E201C5D009DC3EE"
+               BuildableName = "OrderedDictionary_Mac_Tests.xctest"
+               BlueprintName = "OrderedDictionary-Mac-Tests"
+               ReferencedContainer = "container:OrderedDictionary.xcodeproj">
+            </BuildableReference>
+         </TestableReference>
       </Testables>
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "8100423F1ECA33DF009FE633"
-            BuildableName = "OpenCore Configurator.app"
-            BlueprintName = "OpenCore Configurator"
-            ReferencedContainer = "container:OpenCore Configurator.xcodeproj">
+            BlueprintIdentifier = "8055B0371E201C5D009DC3EE"
+            BuildableName = "OrderedDictionary.framework"
+            BlueprintName = "OrderedDictionary-Mac"
+            ReferencedContainer = "container:OrderedDictionary.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
       <AdditionalOptions>
@@ -45,31 +55,22 @@
       buildConfiguration = "Debug"
       selectedDebuggerIdentifier = "Xcode.DebuggerFoundation.Debugger.LLDB"
       selectedLauncherIdentifier = "Xcode.DebuggerFoundation.Launcher.LLDB"
-      enableThreadSanitizer = "YES"
       launchStyle = "0"
       useCustomWorkingDirectory = "NO"
       ignoresPersistentStateOnLaunch = "NO"
       debugDocumentVersioning = "YES"
-      stopOnEveryThreadSanitizerIssue = "YES"
-      stopOnEveryMainThreadCheckerIssue = "YES"
       debugServiceExtension = "internal"
       allowLocationSimulation = "YES">
-      <BuildableProductRunnable
-         runnableDebuggingMode = "0">
+      <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "8100423F1ECA33DF009FE633"
-            BuildableName = "OpenCore Configurator.app"
-            BlueprintName = "OpenCore Configurator"
-            ReferencedContainer = "container:OpenCore Configurator.xcodeproj">
+            BlueprintIdentifier = "8055B0371E201C5D009DC3EE"
+            BuildableName = "OrderedDictionary.framework"
+            BlueprintName = "OrderedDictionary-Mac"
+            ReferencedContainer = "container:OrderedDictionary.xcodeproj">
          </BuildableReference>
-      </BuildableProductRunnable>
+      </MacroExpansion>
       <AdditionalOptions>
-         <AdditionalOption
-            key = "NSZombieEnabled"
-            value = "YES"
-            isEnabled = "YES">
-         </AdditionalOption>
       </AdditionalOptions>
    </LaunchAction>
    <ProfileAction
@@ -78,16 +79,15 @@
       savedToolIdentifier = ""
       useCustomWorkingDirectory = "NO"
       debugDocumentVersioning = "YES">
-      <BuildableProductRunnable
-         runnableDebuggingMode = "0">
+      <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "8100423F1ECA33DF009FE633"
-            BuildableName = "OpenCore Configurator.app"
-            BlueprintName = "OpenCore Configurator"
-            ReferencedContainer = "container:OpenCore Configurator.xcodeproj">
+            BlueprintIdentifier = "8055B0371E201C5D009DC3EE"
+            BuildableName = "OrderedDictionary.framework"
+            BlueprintName = "OrderedDictionary-Mac"
+            ReferencedContainer = "container:OrderedDictionary.xcodeproj">
          </BuildableReference>
-      </BuildableProductRunnable>
+      </MacroExpansion>
    </ProfileAction>
    <AnalyzeAction
       buildConfiguration = "Debug">

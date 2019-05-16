@@ -1,12 +1,10 @@
-//  Copyright © 2019 notiflux. All rights reserved.
-
 import Foundation
 
-struct Kernel: Codable {
+class Kernel: Codable {
     var additions: [Addition]?
     var blocks: [Block]?
     var patches: [Patch]?
-    var quirks: Quirks?
+    var quirks: Quirks? = .init()
 
     private enum CodingKeys: String, CodingKey {
         case additions = "Add"
@@ -15,7 +13,7 @@ struct Kernel: Codable {
         case quirks = "Quirk"
     }
 
-    struct Addition: Codable {
+    class Addition: Codable {
         var bundlePath: String?
         var comment: String?
         var isEnabled: Bool = false
@@ -33,7 +31,7 @@ struct Kernel: Codable {
         }
     }
 
-    struct Block: Codable {
+    class Block: Codable {
         var comment: String?
         var isEnabled: Bool
         var identifier: String?
@@ -47,13 +45,13 @@ struct Kernel: Codable {
         }
     }
 
-    struct Patch: Codable {
+    class Patch: Codable {
         var base: String?
         var comment: String?
         var count: Int?
         var isEnabled: Bool
         var find: Data?
-        var identifier: Data?
+        var identifier: String?
         var limit: Int?
         var mask: Data?
         var matchKernel: String?
@@ -77,7 +75,7 @@ struct Kernel: Codable {
         }
     }
 
-    struct Quirks: Codable {
+    class Quirks: Codable {
         var appleCpuPmCfgLock: Bool = false
         var appleXcpmCfgLock: Bool = false
         var externalDiskIcons: Bool = false

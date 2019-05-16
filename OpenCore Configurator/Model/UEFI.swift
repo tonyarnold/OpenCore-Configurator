@@ -1,18 +1,14 @@
-//  Copyright © 2019 notiflux. All rights reserved.
-
-import Foundation
-
-struct UEFI: Codable {
-    var connectDrivers: Bool = false
+class UEFI: Codable {
+    var connectDrivers: Bool? = false
     var drivers: [String]?
-    var protocols: Protocols?
-    var quirks: Quirks?
+    var protocols: Protocols? = .init()
+    var quirks: Quirks? = .init()
 
-    struct Protocols: Codable {
-        var appleBootPolicy: Bool = false
-        var consoleControl: Bool = false
-        var dataHub: Bool = false
-        var deviceProperties: Bool = false
+    class Protocols: Codable {
+        var appleBootPolicy: Bool? = false
+        var consoleControl: Bool? = false
+        var dataHub: Bool? = false
+        var deviceProperties: Bool? = false
 
         private enum CodingKeys: String, CodingKey {
             case appleBootPolicy = "AppleBootPolicy"
@@ -22,14 +18,14 @@ struct UEFI: Codable {
         }
     }
 
-    struct Quirks: Codable {
-        var exitBootServicesDelay: Int = 0
-        var ignoreInvalidFlexRatio: Bool = false
-        var ignoreTextInGraphics: Bool = false
-        var provideConsoleGOP: Bool = false
-        var releaseUSBOwnership: Bool = false
-        var requestBootVariableRouting: Bool = false
-        var sanitiseClearScreen: Bool = false
+    class Quirks: Codable {
+        var exitBootServicesDelay: Int? = 0
+        var ignoreInvalidFlexRatio: Bool? = false
+        var ignoreTextInGraphics: Bool? = false
+        var provideConsoleGOP: Bool? = false
+        var releaseUSBOwnership: Bool? = false
+        var requestBootVariableRouting: Bool? = false
+        var sanitiseClearScreen: Bool? = false
 
         private enum CodingKeys: String, CodingKey {
             case exitBootServicesDelay = "ExitBootServicesDelay"

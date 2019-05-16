@@ -1,18 +1,16 @@
-//  Copyright © 2019 notiflux. All rights reserved.
-
 import Foundation
 
-struct PlatformInfo: Codable {
+class PlatformInfo: Codable {
     var automatic: Bool = false
     var updateDataHub: Bool = false
     var updateNVRAM: Bool = false
     var updateSMBIOS: Bool = false
-    var updateSMBIOSMode: SMBIOSMode?
+    var updateSMBIOSMode: SMBIOSMode? = .create
 
-    var generic: Generic?
-    var dataHub: DataHub?
-    var platformNVRAM: PlatformNVRAM?
-    var smbios: SMBIOS?
+    var generic: Generic? = .init()
+    var dataHub: DataHub? = .init()
+    var platformNVRAM: PlatformNVRAM? = .init()
+    var smbios: SMBIOS? = .init()
 
     enum SMBIOSMode: String, RawRepresentable, Codable {
         case tryOverwrite = "TryOverwrite"
@@ -21,7 +19,7 @@ struct PlatformInfo: Codable {
         case custom = "Custom"
     }
 
-    struct Generic: Codable {
+    class Generic: Codable {
         var spoofVendor: Bool? = false
         var systemProductName: String?
         var systemSerialNumber: String?
@@ -39,7 +37,7 @@ struct PlatformInfo: Codable {
         }
     }
 
-    struct DataHub: Codable {
+    class DataHub: Codable {
         var platformName: String?
         var systemProductName: String?
         var systemSerialNumber: String?
@@ -73,7 +71,7 @@ struct PlatformInfo: Codable {
         }
     }
 
-    struct PlatformNVRAM: Codable {
+    class PlatformNVRAM: Codable {
         var bID: String?
         var rom: Data?
         var mlb: String?
@@ -89,7 +87,7 @@ struct PlatformInfo: Codable {
         }
     }
 
-    struct SMBIOS: Codable {
+    class SMBIOS: Codable {
         var biosVendor: String?
         var biosVersion: String?
         var biosReleaseDate: String?

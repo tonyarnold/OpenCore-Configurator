@@ -1,8 +1,4 @@
-//  Copyright © 2019 notiflux. All rights reserved.
-
-import Foundation
-
-struct NVRAM: Codable {
+class NVRAM: Codable {
     var additions: [String: [String: Configuration.Value]]?
     var blocks: [String: [String]]?
 

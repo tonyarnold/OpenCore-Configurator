@@ -1,12 +1,10 @@
-//  Copyright © 2019 notiflux. All rights reserved.
-
 import Foundation
 
-struct ACPI: Codable {
+class ACPI: Codable {
     var additions: [Addition]?
     var blocks: [Block]?
     var patches: [Patch]?
-    var quirks: Quirks?
+    var quirks: Quirks? = .init()
 
     private enum CodingKeys: String, CodingKey {
         case additions = "Add"
@@ -15,10 +13,10 @@ struct ACPI: Codable {
         case quirks = "Quirk"
     }
 
-    struct Addition: Codable {
+    class Addition: Codable, Enableable {
         var comment: String?
         var isEnabled: Bool = false
-        var path: String
+        var path: String = ""
 
         private enum CodingKeys: String, CodingKey {
             case comment = "Comment"
@@ -27,10 +25,10 @@ struct ACPI: Codable {
         }
     }
 
-    struct Block: Codable {
+    class Block: Codable, Enableable {
         var blockAll: Bool? = false
         var comment: String?
-        var isEnabled: Bool? = false
+        var isEnabled: Bool = false
         var oemTableIdentifier: Data? = Data(repeating: 0, count: 8)
         var tableLength: Int? = 0
         var tableSignature: Data? = Data(repeating: 0, count: 4)
@@ -45,10 +43,10 @@ struct ACPI: Codable {
         }
     }
 
-    struct Patch: Codable {
+    class Patch: Codable, Enableable {
         var comment: String?
         var count: Int? = 0
-        var isEnabled: Bool? = false
+        var isEnabled: Bool = false
         var find: Data?
         var limit: Int? = 0
         var mask: Data?
@@ -75,7 +73,7 @@ struct ACPI: Codable {
         }
     }
 
-    struct Quirks: Codable {
+    class Quirks: Codable {
         var fadtEnableReset: Bool? = false
         var ignoreForWindows: Bool? = false
         var normalizeHeaders: Bool? = false

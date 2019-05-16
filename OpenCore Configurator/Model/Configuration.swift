@@ -1,15 +1,13 @@
-//  Copyright © 2019 notiflux. All rights reserved.
-
 import Foundation
 
-struct Configuration: Codable {
-    var acpi: ACPI?
-    var deviceProperties: DeviceProperties?
-    var kernel: Kernel?
-    var miscellaneous: Miscellaneous?
-    var nvram: NVRAM?
-    var platformInfo: PlatformInfo?
-    var uefi: UEFI?
+class Configuration: Codable {
+    var acpi: ACPI? = .init()
+    var deviceProperties: DeviceProperties? = .init()
+    var kernel: Kernel? = .init()
+    var miscellaneous: Miscellaneous? = .init()
+    var nvram: NVRAM? = .init()
+    var platformInfo: PlatformInfo? = .init()
+    var uefi: UEFI? = .init()
 
     private enum CodingKeys: String, CodingKey {
         case acpi = "ACPI"
@@ -29,18 +27,15 @@ struct Configuration: Codable {
 
         init(from decoder: Decoder) throws {
             let container = try decoder.singleValueContainer()
-            do {
-                self = try .int(container.decode(Int.self))
-            } catch DecodingError.typeMismatch {
-                do {
-                    self = try .string(container.decode(String.self))
-                } catch DecodingError.typeMismatch {
-                    do {
-                        self = try .data(container.decode(Data.self))
-                    } catch DecodingError.typeMismatch {
-                        throw DecodingError.typeMismatch(Value.self, DecodingError.Context(codingPath: decoder.codingPath, debugDescription: "Encoded payload not of an expected type"))
-                    }
-                }
+
+            if let value = try? container.decode(Data.self) {
+                self = .data(value)
+            } else if let value = try? container.decode(Int.self) {
+                self = .int(value)
+            } else if let value = try? container.decode(String.self) {
+                self = .string(value)
+            } else {
+                throw DecodingError.typeMismatch(Value.self, DecodingError.Context(codingPath: decoder.codingPath, debugDescription: "Encoded payload not of an expected type"))
             }
         }
 

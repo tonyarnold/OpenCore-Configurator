@@ -1,0 +1,146 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="HnU-3r-reT">
+    <dependencies>
+        <deployment identifier="macosx"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="14490.70"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Quirks-->
+        <scene sceneID="iXK-bx-3Hm">
+            <objects>
+                <viewController title="Quirks" storyboardIdentifier="ACPIQuirksViewController" showSeguePresentationStyle="single" id="HnU-3r-reT" customClass="ACPIQuirksViewController" customModule="OpenCore_Configurator" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" id="kEY-0U-Weq">
+                        <rect key="frame" x="0.0" y="0.0" width="788" height="360"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button horizontalHuggingPriority="249" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="Aad-nZ-pTM">
+                                <rect key="frame" x="18" y="324" width="752" height="18"/>
+                                <buttonCell key="cell" type="check" title="FadtEnableReset" bezelStyle="regularSquare" imagePosition="left" inset="2" id="KoR-q9-tLQ">
+                                    <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                                    <font key="font" metaFont="system"/>
+                                </buttonCell>
+                            </button>
+                            <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="Hia-DA-1Mb">
+                                <rect key="frame" x="36" y="286" width="734" height="32"/>
+                                <textFieldCell key="cell" selectable="YES" id="0DZ-p7-FYi">
+                                    <font key="font" metaFont="controlContent"/>
+                                    <string key="title">Provide reset register and flag in FADT table to enable reboot and shutdown on legacy hardware. Not recommended unless required.</string>
+                                    <color key="textColor" name="secondaryLabelColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                </textFieldCell>
+                            </textField>
+                            <button horizontalHuggingPriority="249" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="oKl-5N-AtJ">
+                                <rect key="frame" x="18" y="252" width="752" height="18"/>
+                                <buttonCell key="cell" type="check" title="IgnoreForWindows" bezelStyle="regularSquare" imagePosition="left" inset="2" id="yqi-uo-pd2">
+                                    <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                                    <font key="font" metaFont="system"/>
+                                </buttonCell>
+                            </button>
+                            <textField horizontalHuggingPriority="249" verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="qu7-4o-z56">
+                                <rect key="frame" x="36" y="214" width="734" height="32"/>
+                                <textFieldCell key="cell" selectable="YES" id="ohM-Ck-QYl">
+                                    <font key="font" metaFont="controlContent"/>
+                                    <string key="title">Disable all sorts of ACPI modifications when booting Windows operating system. Not recommended, as ACPI tables must be compatible with any operating system regardless of the changes.</string>
+                                    <color key="textColor" name="secondaryLabelColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                </textFieldCell>
+                            </textField>
+                            <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="5jU-tL-9hJ">
+                                <rect key="frame" x="18" y="180" width="752" height="18"/>
+                                <buttonCell key="cell" type="check" title="NormalizeHeaders" bezelStyle="regularSquare" imagePosition="left" inset="2" id="AN0-5s-j33">
+                                    <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                                    <font key="font" metaFont="system"/>
+                                </buttonCell>
+                            </button>
+                            <textField horizontalHuggingPriority="249" verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="W9n-TJ-GdF">
+                                <rect key="frame" x="36" y="142" width="734" height="32"/>
+                                <textFieldCell key="cell" selectable="YES" id="f9E-Jh-b1O">
+                                    <font key="font" metaFont="controlContent"/>
+                                    <string key="title">Cleanup ACPI header fields to workaround macOS ACPI implementation bug causing boot crashes. The issue is fixed in macOS Mojave (10.14).</string>
+                                    <color key="textColor" name="secondaryLabelColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                </textFieldCell>
+                            </textField>
+                            <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="t3X-oP-3hx">
+                                <rect key="frame" x="18" y="108" width="752" height="18"/>
+                                <buttonCell key="cell" type="check" title="RebaseRegions" bezelStyle="regularSquare" imagePosition="left" inset="2" id="xfj-Dt-80d">
+                                    <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                                    <font key="font" metaFont="system"/>
+                                </buttonCell>
+                            </button>
+                            <textField horizontalHuggingPriority="249" verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="wo2-be-Yht">
+                                <rect key="frame" x="36" y="86" width="734" height="16"/>
+                                <textFieldCell key="cell" selectable="YES" title="Attempt to heuristically relocate ACPI memory regions. Not recommended." id="T7e-sM-itY">
+                                    <font key="font" metaFont="controlContent"/>
+                                    <color key="textColor" name="secondaryLabelColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                </textFieldCell>
+                            </textField>
+                            <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="gR2-3Y-iGc">
+                                <rect key="frame" x="18" y="52" width="752" height="18"/>
+                                <buttonCell key="cell" type="check" title="ResetLogoStatus" bezelStyle="regularSquare" imagePosition="left" inset="2" id="d0u-ay-0vT">
+                                    <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                                    <font key="font" metaFont="system"/>
+                                </buttonCell>
+                            </button>
+                            <textField horizontalHuggingPriority="249" verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="AkX-io-GSS">
+                                <rect key="frame" x="36" y="30" width="734" height="16"/>
+                                <textFieldCell key="cell" selectable="YES" title="This works around firmwares that provide BGRT table but fail to handle screen updates afterwards." id="Ccm-96-bRK">
+                                    <font key="font" metaFont="controlContent"/>
+                                    <color key="textColor" name="secondaryLabelColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                </textFieldCell>
+                            </textField>
+                        </subviews>
+                        <constraints>
+                            <constraint firstAttribute="trailing" secondItem="t3X-oP-3hx" secondAttribute="trailing" constant="20" symbolic="YES" id="3of-Jl-yh4"/>
+                            <constraint firstItem="5jU-tL-9hJ" firstAttribute="leading" secondItem="kEY-0U-Weq" secondAttribute="leading" constant="20" symbolic="YES" id="584-25-ckf"/>
+                            <constraint firstItem="oKl-5N-AtJ" firstAttribute="leading" secondItem="kEY-0U-Weq" secondAttribute="leading" constant="20" symbolic="YES" id="6WH-tD-zFF"/>
+                            <constraint firstItem="qu7-4o-z56" firstAttribute="leading" secondItem="oKl-5N-AtJ" secondAttribute="leading" constant="18" id="6eu-nU-S7w"/>
+                            <constraint firstItem="oKl-5N-AtJ" firstAttribute="top" secondItem="Hia-DA-1Mb" secondAttribute="bottom" constant="18" id="82L-mX-VfX"/>
+                            <constraint firstAttribute="trailing" secondItem="gR2-3Y-iGc" secondAttribute="trailing" constant="20" symbolic="YES" id="83M-bV-Esd"/>
+                            <constraint firstItem="Hia-DA-1Mb" firstAttribute="top" secondItem="Aad-nZ-pTM" secondAttribute="bottom" constant="8" symbolic="YES" id="EQV-Hg-LTN"/>
+                            <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="Aad-nZ-pTM" secondAttribute="trailing" constant="20" symbolic="YES" id="IDJ-AQ-qJt"/>
+                            <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="AkX-io-GSS" secondAttribute="bottom" constant="30" id="JNw-9m-ici"/>
+                            <constraint firstItem="Hia-DA-1Mb" firstAttribute="leading" secondItem="Aad-nZ-pTM" secondAttribute="leading" constant="18" id="N2Y-EB-kH4"/>
+                            <constraint firstItem="gR2-3Y-iGc" firstAttribute="leading" secondItem="kEY-0U-Weq" secondAttribute="leading" constant="20" symbolic="YES" id="O0f-bm-yqz"/>
+                            <constraint firstItem="wo2-be-Yht" firstAttribute="top" secondItem="t3X-oP-3hx" secondAttribute="bottom" constant="8" symbolic="YES" id="OiJ-hb-uFI"/>
+                            <constraint firstItem="AkX-io-GSS" firstAttribute="top" secondItem="gR2-3Y-iGc" secondAttribute="bottom" constant="8" symbolic="YES" id="P24-5a-yTz"/>
+                            <constraint firstItem="W9n-TJ-GdF" firstAttribute="leading" secondItem="5jU-tL-9hJ" secondAttribute="leading" constant="18" id="Pxg-Nf-o8a"/>
+                            <constraint firstItem="AkX-io-GSS" firstAttribute="leading" secondItem="gR2-3Y-iGc" secondAttribute="leading" constant="18" id="Qqr-kF-7p8"/>
+                            <constraint firstItem="5jU-tL-9hJ" firstAttribute="top" secondItem="qu7-4o-z56" secondAttribute="bottom" constant="18" id="UFG-2g-dHt"/>
+                            <constraint firstItem="gR2-3Y-iGc" firstAttribute="trailing" secondItem="5jU-tL-9hJ" secondAttribute="trailing" id="bXf-rM-pIw"/>
+                            <constraint firstItem="AkX-io-GSS" firstAttribute="trailing" secondItem="gR2-3Y-iGc" secondAttribute="trailing" id="c8S-dj-phO"/>
+                            <constraint firstItem="qu7-4o-z56" firstAttribute="leading" secondItem="Hia-DA-1Mb" secondAttribute="leading" id="dw4-jq-Iar"/>
+                            <constraint firstAttribute="trailing" secondItem="5jU-tL-9hJ" secondAttribute="trailing" constant="20" symbolic="YES" id="eq2-eZ-krK"/>
+                            <constraint firstItem="wo2-be-Yht" firstAttribute="trailing" secondItem="t3X-oP-3hx" secondAttribute="trailing" id="f6j-1q-RhH"/>
+                            <constraint firstItem="t3X-oP-3hx" firstAttribute="leading" secondItem="kEY-0U-Weq" secondAttribute="leading" constant="20" symbolic="YES" id="fhA-ik-LoU"/>
+                            <constraint firstItem="gR2-3Y-iGc" firstAttribute="top" secondItem="wo2-be-Yht" secondAttribute="bottom" constant="18" id="lE3-8l-giF"/>
+                            <constraint firstItem="W9n-TJ-GdF" firstAttribute="trailing" secondItem="5jU-tL-9hJ" secondAttribute="trailing" id="mh8-s7-7Xa"/>
+                            <constraint firstItem="qu7-4o-z56" firstAttribute="top" secondItem="oKl-5N-AtJ" secondAttribute="bottom" constant="8" symbolic="YES" id="mqb-wB-Ne2"/>
+                            <constraint firstItem="t3X-oP-3hx" firstAttribute="top" secondItem="W9n-TJ-GdF" secondAttribute="bottom" constant="18" id="nT9-t4-0Ki"/>
+                            <constraint firstItem="wo2-be-Yht" firstAttribute="leading" secondItem="t3X-oP-3hx" secondAttribute="leading" constant="18" id="nsJ-Kc-XDc"/>
+                            <constraint firstItem="Aad-nZ-pTM" firstAttribute="leading" secondItem="kEY-0U-Weq" secondAttribute="leading" constant="20" symbolic="YES" id="oLm-2j-3HE"/>
+                            <constraint firstItem="gR2-3Y-iGc" firstAttribute="leading" secondItem="5jU-tL-9hJ" secondAttribute="leading" id="p52-kY-L8F"/>
+                            <constraint firstAttribute="trailing" secondItem="oKl-5N-AtJ" secondAttribute="trailing" constant="20" symbolic="YES" id="qrc-4u-KdM"/>
+                            <constraint firstItem="Aad-nZ-pTM" firstAttribute="top" secondItem="kEY-0U-Weq" secondAttribute="top" constant="20" symbolic="YES" id="rJu-Au-Lz1"/>
+                            <constraint firstItem="W9n-TJ-GdF" firstAttribute="top" secondItem="5jU-tL-9hJ" secondAttribute="bottom" constant="8" symbolic="YES" id="sfo-Z1-aQT"/>
+                            <constraint firstItem="Hia-DA-1Mb" firstAttribute="trailing" secondItem="Aad-nZ-pTM" secondAttribute="trailing" id="wFM-mv-VFZ"/>
+                            <constraint firstItem="qu7-4o-z56" firstAttribute="trailing" secondItem="oKl-5N-AtJ" secondAttribute="trailing" id="xEw-c0-V9D"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="fadtEnableResetButton" destination="Aad-nZ-pTM" id="H7G-uo-LNu"/>
+                        <outlet property="ignoreForWindowsButton" destination="oKl-5N-AtJ" id="u0q-ql-fOo"/>
+                        <outlet property="normalizeHeadersButton" destination="5jU-tL-9hJ" id="hta-hW-49o"/>
+                        <outlet property="rebaseRegionsButton" destination="t3X-oP-3hx" id="P1s-53-CNn"/>
+                        <outlet property="resetLogoStatusButton" destination="gR2-3Y-iGc" id="YW1-eQ-I2X"/>
+                    </connections>
+                </viewController>
+                <customObject id="A0K-Hw-Blp" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1554" y="1141"/>
+        </scene>
+    </scenes>
+</document>

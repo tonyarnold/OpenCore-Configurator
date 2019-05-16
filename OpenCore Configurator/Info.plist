@@ -18,9 +18,9 @@
 			<key>CFBundleTypeRole</key>
 			<string>Editor</string>
 			<key>LSHandlerRank</key>
-			<string>Owner</string>
+			<string>Alternate</string>
 			<key>NSDocumentClass</key>
-			<string></string>
+			<string>$(PRODUCT_NAME:c99extidentifier).ConfigurationDocument</string>
 		</dict>
 	</array>
 	<key>CFBundleExecutable</key>
