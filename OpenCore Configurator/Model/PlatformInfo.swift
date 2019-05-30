@@ -1,22 +1,57 @@
 import Foundation
 
-class PlatformInfo: Codable {
-    var automatic: Bool = false
-    var updateDataHub: Bool = false
-    var updateNVRAM: Bool = false
-    var updateSMBIOS: Bool = false
-    var updateSMBIOSMode: SMBIOSMode? = .create
+final class PlatformInfo: Codable {
+    var automatic: Bool
+    var updateDataHub: Bool
+    var updateNVRAM: Bool
+    var updateSMBIOS: Bool
+    var updateSMBIOSMode: SMBIOSMode
 
-    var generic: Generic? = .init()
-    var dataHub: DataHub? = .init()
-    var platformNVRAM: PlatformNVRAM? = .init()
-    var smbios: SMBIOS? = .init()
+    var generic: Generic
+    var dataHub: DataHub
+    var platformNVRAM: PlatformNVRAM
+    var smbios: SMBIOS
 
     enum SMBIOSMode: String, RawRepresentable, Codable {
         case tryOverwrite = "TryOverwrite"
         case create = "Create"
         case overwrite = "Overwrite"
         case custom = "Custom"
+    }
+
+    init() {
+        // Ideally, this initializer implementation wouldn't be necessary and would could provide the values on the properties themselves and have the initializer be automatically inferred, but here we are.
+        // Thanks, Swift, you idealistic jerk.
+        automatic = false
+        updateDataHub = false
+        updateNVRAM = false
+        updateSMBIOS = false
+        updateSMBIOSMode = .create
+        generic = .init()
+        dataHub = .init()
+        platformNVRAM = .init()
+        smbios = .init()
+    }
+
+    init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+
+        // All of these decode calls do the same thing. They:
+        //  - Use an optional `try?`, which means that if there's an error decoding the key from the incoming data, `nil` will be returned rather than throwing an error.
+        //  - Use `decodeIfPresent(…)` so that if the key is missing, it's _not_ an error. This is arguably unnecessary given we swallow the decoding errors by using `try?`, but let's do it for consistency and clarity.
+        //  - Use a nil coalescing (`??`) to provide a default value if there is none currently.
+        //
+        // The end result of this is that our final in-memory data (and what is saved back to disk) will fall back to default values for *everything* that is missing or malformed.
+        // As I mentioned, the downside is that if someone has a key spelled "autometic" with the correct value, it will be ignored and subsequently *deleted* when the user saves the data model back to disk.
+        automatic = (try? container.decodeIfPresent(Bool.self, forKey: .automatic)) ?? false
+        updateDataHub = (try? container.decodeIfPresent(Bool.self, forKey: .updateDataHub)) ?? false
+        updateNVRAM = (try? container.decodeIfPresent(Bool.self, forKey: .updateNVRAM)) ?? false
+        updateSMBIOS = (try? container.decodeIfPresent(Bool.self, forKey: .updateSMBIOS)) ?? false
+        updateSMBIOSMode = (try? container.decodeIfPresent(SMBIOSMode.self, forKey: .updateSMBIOSMode)) ?? .create
+        generic = (try? container.decodeIfPresent(Generic.self, forKey: .generic)) ?? .init()
+        dataHub = (try? container.decodeIfPresent(DataHub.self, forKey: .dataHub)) ?? .init()
+        platformNVRAM = (try? container.decodeIfPresent(PlatformNVRAM.self, forKey: .platformNVRAM)) ?? .init()
+        smbios = (try? container.decodeIfPresent(SMBIOS.self, forKey: .smbios)) ?? .init()
     }
 
     class Generic: Codable {
