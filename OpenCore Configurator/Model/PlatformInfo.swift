@@ -54,8 +54,8 @@ final class PlatformInfo: Codable {
         smbios = (try? container.decodeIfPresent(SMBIOS.self, forKey: .smbios)) ?? .init()
     }
 
-    class Generic: Codable {
-        var spoofVendor: Bool? = false
+    final class Generic: Codable {
+        var spoofVendor: Bool
         var systemProductName: String?
         var systemSerialNumber: String?
         var systemUUID: String?
@@ -69,6 +69,20 @@ final class PlatformInfo: Codable {
             case systemUUID = "SystemUUID"
             case mlb = "MLB"
             case rom = "ROM"
+        }
+
+        init() {
+            spoofVendor = false
+        }
+
+        init(from decoder: Decoder) throws {
+            let container = try decoder.container(keyedBy: CodingKeys.self)
+            spoofVendor = (try? container.decodeIfPresent(Bool.self, forKey: .spoofVendor)) ?? false
+            systemProductName = try? container.decodeIfPresent(String.self, forKey: .systemProductName)
+            systemSerialNumber = try? container.decodeIfPresent(String.self, forKey: .systemSerialNumber)
+            systemUUID = try? container.decodeIfPresent(String.self, forKey: .systemUUID)
+            mlb = try? container.decodeIfPresent(String.self, forKey: .mlb)
+            rom = try? container.decodeIfPresent(Data.self, forKey: .rom)
         }
     }
 
