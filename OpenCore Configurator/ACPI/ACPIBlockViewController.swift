@@ -47,12 +47,12 @@ final class ACPIBlockViewController: NSViewController, CategoryRepresenting {
             index = 0
         }
 
-        acpi?.blocks?.insert(.init(), at: index)
+        acpi?.blocks.insert(.init(), at: index)
     }
 
     @IBAction func delete(_ sender: Any) {
         // Remove each row in reverse order so that we don't have to adjust the index as we mutate the array
-        tableView.selectedRowIndexes.reversed().forEach { acpi?.blocks?.remove(at: $0) }
+        tableView.selectedRowIndexes.reversed().forEach { acpi?.blocks.remove(at: $0) }
     }
 
     override func viewDidLoad() {
@@ -75,11 +75,11 @@ final class ACPIBlockViewController: NSViewController, CategoryRepresenting {
 
 extension ACPIBlockViewController: NSTableViewDataSource {
     func numberOfRows(in tableView: NSTableView) -> Int {
-        return acpi?.blocks?.count ?? 0
+        return acpi?.blocks.count ?? 0
     }
 
     func tableView(_ tableView: NSTableView, objectValueFor tableColumn: NSTableColumn?, row: Int) -> Any? {
-        return acpi?.blocks?[row]
+        return acpi?.blocks[row]
     }
 }
 
@@ -127,7 +127,7 @@ extension ACPIBlockViewController: NSTableViewDelegate {
             }
 
             cell.provideValue = { ($0 as? ACPI.Block)?.oemTableIdentifier }
-            cell.handleValueChange = { ($0 as? ACPI.Block)?.oemTableIdentifier = $1 }
+            cell.handleValueChange = { ($0 as? ACPI.Block)?.oemTableIdentifier = $1 ?? Data(repeating: 0, count: 8) }
 
         case NSUserInterfaceItemIdentifier.tableLength:
             guard let cell = view as? NumberEditingTableCellView else {
@@ -142,7 +142,7 @@ extension ACPIBlockViewController: NSTableViewDelegate {
                 return NSNumber(value: number)
             }
 
-            cell.handleValueChange = { ($0 as? ACPI.Block)?.tableLength = $1?.intValue }
+            cell.handleValueChange = { ($0 as? ACPI.Block)?.tableLength = $1?.intValue ?? 0 }
 
         case NSUserInterfaceItemIdentifier.tableSignature:
             guard let cell = view as? DataEditingTableCellView else {
@@ -150,7 +150,7 @@ extension ACPIBlockViewController: NSTableViewDelegate {
             }
 
             cell.provideValue = { ($0 as? ACPI.Block)?.tableSignature }
-            cell.handleValueChange = { ($0 as? ACPI.Block)?.tableSignature = $1 }
+            cell.handleValueChange = { ($0 as? ACPI.Block)?.tableSignature = $1 ?? Data(repeating: 0, count: 4) }
 
         default:
             break

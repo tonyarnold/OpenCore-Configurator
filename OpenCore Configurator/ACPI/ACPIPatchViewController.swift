@@ -47,12 +47,12 @@ final class ACPIPatchViewController: NSViewController, CategoryRepresenting {
             index = 0
         }
 
-        acpi?.patches?.insert(.init(), at: index)
+        acpi?.patches.insert(.init(), at: index)
     }
 
     @IBAction func delete(_ sender: Any) {
         // Remove each row in reverse order so that we don't have to adjust the index as we mutate the array
-        tableView.selectedRowIndexes.reversed().forEach { acpi?.blocks?.remove(at: $0) }
+        tableView.selectedRowIndexes.reversed().forEach { acpi?.blocks.remove(at: $0) }
     }
 
     override func viewDidLoad() {
@@ -75,11 +75,11 @@ final class ACPIPatchViewController: NSViewController, CategoryRepresenting {
 
 extension ACPIPatchViewController: NSTableViewDataSource {
     func numberOfRows(in tableView: NSTableView) -> Int {
-        return acpi?.patches?.count ?? 0
+        return acpi?.patches.count ?? 0
     }
 
     func tableView(_ tableView: NSTableView, objectValueFor tableColumn: NSTableColumn?, row: Int) -> Any? {
-        return acpi?.patches?[row]
+        return acpi?.patches[row]
     }
 }
 
@@ -118,7 +118,7 @@ extension ACPIPatchViewController: NSTableViewDelegate {
                 return NSNumber(value: number)
             }
 
-            cell.handleValueChange = { ($0 as? ACPI.Patch)?.count = $1?.intValue }
+            cell.handleValueChange = { ($0 as? ACPI.Patch)?.count = $1?.intValue ?? 0 }
 
         case NSUserInterfaceItemIdentifier.enabled:
             guard let cell = view as? BooleanEditingTableCellView else {
@@ -141,7 +141,7 @@ extension ACPIPatchViewController: NSTableViewDelegate {
                 return NSNumber(value: number)
             }
 
-            cell.handleValueChange = { ($0 as? ACPI.Patch)?.limit = $1?.intValue }
+            cell.handleValueChange = { ($0 as? ACPI.Patch)?.limit = $1?.intValue ?? 0 }
 
         case NSUserInterfaceItemIdentifier.oemTableId:
             guard let cell = view as? DataEditingTableCellView else {
@@ -149,7 +149,7 @@ extension ACPIPatchViewController: NSTableViewDelegate {
             }
 
             cell.provideValue = { ($0 as? ACPI.Patch)?.oemTableIdentifier }
-            cell.handleValueChange = { ($0 as? ACPI.Patch)?.oemTableIdentifier = $1 }
+            cell.handleValueChange = { ($0 as? ACPI.Patch)?.oemTableIdentifier = $1 ?? Data(repeating: 0, count: 8) }
 
         case NSUserInterfaceItemIdentifier.mask:
             guard let cell = view as? DataEditingTableCellView else {
@@ -157,7 +157,7 @@ extension ACPIPatchViewController: NSTableViewDelegate {
             }
 
             cell.provideValue = { ($0 as? ACPI.Patch)?.mask }
-            cell.handleValueChange = { ($0 as? ACPI.Patch)?.mask = $1 }
+            cell.handleValueChange = { ($0 as? ACPI.Patch)?.mask = $1 ?? Data() }
 
         case NSUserInterfaceItemIdentifier.replace:
             guard let cell = view as? DataEditingTableCellView else {
@@ -165,7 +165,7 @@ extension ACPIPatchViewController: NSTableViewDelegate {
             }
 
             cell.provideValue = { ($0 as? ACPI.Patch)?.replace }
-            cell.handleValueChange = { ($0 as? ACPI.Patch)?.replace = $1 }
+            cell.handleValueChange = { ($0 as? ACPI.Patch)?.replace = $1 ?? Data() }
 
         case NSUserInterfaceItemIdentifier.replaceMask:
             guard let cell = view as? DataEditingTableCellView else {
@@ -173,7 +173,7 @@ extension ACPIPatchViewController: NSTableViewDelegate {
             }
 
             cell.provideValue = { ($0 as? ACPI.Patch)?.replaceMask }
-            cell.handleValueChange = { ($0 as? ACPI.Patch)?.replaceMask = $1 }
+            cell.handleValueChange = { ($0 as? ACPI.Patch)?.replaceMask = $1 ?? Data() }
 
         case NSUserInterfaceItemIdentifier.skip:
             guard let cell = view as? NumberEditingTableCellView else {
@@ -188,7 +188,7 @@ extension ACPIPatchViewController: NSTableViewDelegate {
                 return NSNumber(value: number)
             }
 
-            cell.handleValueChange = { ($0 as? ACPI.Patch)?.skip = $1?.intValue }
+            cell.handleValueChange = { ($0 as? ACPI.Patch)?.skip = $1?.intValue ?? 0 }
 
         case NSUserInterfaceItemIdentifier.tableLength:
             guard let cell = view as? NumberEditingTableCellView else {
@@ -203,7 +203,7 @@ extension ACPIPatchViewController: NSTableViewDelegate {
                 return NSNumber(value: number)
             }
 
-            cell.handleValueChange = { ($0 as? ACPI.Patch)?.tableLength = $1?.intValue }
+            cell.handleValueChange = { ($0 as? ACPI.Patch)?.tableLength = $1?.intValue ?? 0 }
 
         case NSUserInterfaceItemIdentifier.tableSignature:
             guard let cell = view as? DataEditingTableCellView else {
@@ -211,7 +211,7 @@ extension ACPIPatchViewController: NSTableViewDelegate {
             }
 
             cell.provideValue = { ($0 as? ACPI.Patch)?.tableSignature }
-            cell.handleValueChange = { ($0 as? ACPI.Patch)?.tableSignature = $1 }
+            cell.handleValueChange = { ($0 as? ACPI.Patch)?.tableSignature = $1 ?? Data(repeating: 0, count: 4) }
 
         default:
             break

@@ -1,13 +1,13 @@
 import Foundation
 
 class Configuration: Codable {
-    var acpi: ACPI? = .init()
-    var deviceProperties: DeviceProperties? = .init()
-    var kernel: Kernel? = .init()
-    var miscellaneous: Miscellaneous? = .init()
-    var nvram: NVRAM? = .init()
-    var platformInfo: PlatformInfo? = .init()
-    var uefi: UEFI? = .init()
+    var acpi = ACPI()
+    var deviceProperties = DeviceProperties()
+    var kernel = Kernel()
+    var miscellaneous = Miscellaneous()
+    var nvram = NVRAM()
+    var platformInfo = PlatformInfo()
+    var uefi = UEFI()
 
     private enum CodingKeys: String, CodingKey {
         case acpi = "ACPI"

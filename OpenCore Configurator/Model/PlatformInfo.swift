@@ -1,16 +1,16 @@
 import Foundation
 
 final class PlatformInfo: Codable {
-    var automatic: Bool
-    var updateDataHub: Bool
-    var updateNVRAM: Bool
-    var updateSMBIOS: Bool
-    var updateSMBIOSMode: SMBIOSMode
+    var automatic = false
+    var updateDataHub = false
+    var updateNVRAM = false
+    var updateSMBIOS = false
+    var updateSMBIOSMode = SMBIOSMode.create
 
-    var generic: Generic
-    var dataHub: DataHub
-    var platformNVRAM: PlatformNVRAM
-    var smbios: SMBIOS
+    var generic = Generic()
+    var dataHub = DataHub()
+    var platformNVRAM = PlatformNVRAM()
+    var smbios = SMBIOS()
 
     enum SMBIOSMode: String, RawRepresentable, Codable {
         case tryOverwrite = "TryOverwrite"
@@ -19,48 +19,13 @@ final class PlatformInfo: Codable {
         case custom = "Custom"
     }
 
-    init() {
-        // Ideally, this initializer implementation wouldn't be necessary and would could provide the values on the properties themselves and have the initializer be automatically inferred, but here we are.
-        // Thanks, Swift, you idealistic jerk.
-        automatic = false
-        updateDataHub = false
-        updateNVRAM = false
-        updateSMBIOS = false
-        updateSMBIOSMode = .create
-        generic = .init()
-        dataHub = .init()
-        platformNVRAM = .init()
-        smbios = .init()
-    }
-
-    init(from decoder: Decoder) throws {
-        let container = try decoder.container(keyedBy: CodingKeys.self)
-
-        // All of these decode calls do the same thing. They:
-        //  - Use an optional `try?`, which means that if there's an error decoding the key from the incoming data, `nil` will be returned rather than throwing an error.
-        //  - Use `decodeIfPresent(…)` so that if the key is missing, it's _not_ an error. This is arguably unnecessary given we swallow the decoding errors by using `try?`, but let's do it for consistency and clarity.
-        //  - Use a nil coalescing (`??`) to provide a default value if there is none currently.
-        //
-        // The end result of this is that our final in-memory data (and what is saved back to disk) will fall back to default values for *everything* that is missing or malformed.
-        // As I mentioned, the downside is that if someone has a key spelled "autometic" with the correct value, it will be ignored and subsequently *deleted* when the user saves the data model back to disk.
-        automatic = (try? container.decodeIfPresent(Bool.self, forKey: .automatic)) ?? false
-        updateDataHub = (try? container.decodeIfPresent(Bool.self, forKey: .updateDataHub)) ?? false
-        updateNVRAM = (try? container.decodeIfPresent(Bool.self, forKey: .updateNVRAM)) ?? false
-        updateSMBIOS = (try? container.decodeIfPresent(Bool.self, forKey: .updateSMBIOS)) ?? false
-        updateSMBIOSMode = (try? container.decodeIfPresent(SMBIOSMode.self, forKey: .updateSMBIOSMode)) ?? .create
-        generic = (try? container.decodeIfPresent(Generic.self, forKey: .generic)) ?? .init()
-        dataHub = (try? container.decodeIfPresent(DataHub.self, forKey: .dataHub)) ?? .init()
-        platformNVRAM = (try? container.decodeIfPresent(PlatformNVRAM.self, forKey: .platformNVRAM)) ?? .init()
-        smbios = (try? container.decodeIfPresent(SMBIOS.self, forKey: .smbios)) ?? .init()
-    }
-
-    final class Generic: Codable {
-        var spoofVendor: Bool
-        var systemProductName: String?
-        var systemSerialNumber: String?
-        var systemUUID: String?
-        var mlb: String?
-        var rom: Data?
+    class Generic: Codable {
+        var spoofVendor = false
+        var systemProductName = "MacPro6,1"
+        var systemSerialNumber = "OPENCORE_SN1"
+        var systemUUID = ""
+        var mlb = "OPENCORE_MLB_SN11"
+        var rom = Data(repeating: 0, count: 6)
 
         private enum CodingKeys: String, CodingKey {
             case spoofVendor = "SpoofVendor"
@@ -70,20 +35,6 @@ final class PlatformInfo: Codable {
             case mlb = "MLB"
             case rom = "ROM"
         }
-
-        init() {
-            spoofVendor = false
-        }
-
-        init(from decoder: Decoder) throws {
-            let container = try decoder.container(keyedBy: CodingKeys.self)
-            spoofVendor = (try? container.decodeIfPresent(Bool.self, forKey: .spoofVendor)) ?? false
-            systemProductName = try? container.decodeIfPresent(String.self, forKey: .systemProductName)
-            systemSerialNumber = try? container.decodeIfPresent(String.self, forKey: .systemSerialNumber)
-            systemUUID = try? container.decodeIfPresent(String.self, forKey: .systemUUID)
-            mlb = try? container.decodeIfPresent(String.self, forKey: .mlb)
-            rom = try? container.decodeIfPresent(Data.self, forKey: .rom)
-        }
     }
 
     class DataHub: Codable {
@@ -92,12 +43,12 @@ final class PlatformInfo: Codable {
         var systemSerialNumber: String?
         var systemUUID: String?
         var boardProduct: String?
-        var boardRevision: Data?
-        var startupPowerEvents: Int64?
-        var initialTSC: Int64? = 0
+        var boardRevision = Data(repeating: 0, count: 1)
+        var startupPowerEvents: Int64 = 0
+        var initialTSC: Int64 = 0
         var fsbFrequency: Int64?
         var artFrequency: Int64?
-        var devicePathsSupported: Data?
+        var devicePathsSupported: Int32?
         var smcRevision: Data?
         var smcBranch: Data?
         var smcPlatform: Data?
@@ -157,9 +108,9 @@ final class PlatformInfo: Codable {
         var chassisType: Int?
         var chassisSerialNumber: String?
         var chassisAssetTag: String?
-        var platformFeature: Int?
-        var firmwareFeatures: Data?
-        var firmwareFeaturesMask: Data?
+        var platformFeature: UInt32 = 0xFFFF_FFFF
+        var firmwareFeatures = Data(repeating: 0, count: 16)
+        var firmwareFeaturesMask = Data(repeating: 0, count: 8)
         var processorType: Int16?
         var memoryFormFactor: Int8?
 

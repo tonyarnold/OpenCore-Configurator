@@ -47,14 +47,14 @@ final class ACPIAddViewController: NSViewController, CategoryRepresenting {
             index = 0
         }
 
-        acpi?.additions?.insert(.init(), at: index)
+        acpi?.additions.insert(.init(), at: index)
         tableView.animator().insertRows(at: IndexSet(integer: index), withAnimation: [.effectFade, .effectGap])
     }
 
     @IBAction func delete(_ sender: Any) {
         // Remove each row in reverse order so that we don't have to adjust the index as we mutate the array
         tableView.selectedRowIndexes.reversed().forEach {
-            acpi?.additions?.remove(at: $0)
+            acpi?.additions.remove(at: $0)
             tableView.animator().removeRows(at: IndexSet(integer: $0), withAnimation: [.effectFade, .effectGap])
         }
     }
@@ -81,11 +81,11 @@ final class ACPIAddViewController: NSViewController, CategoryRepresenting {
 
 extension ACPIAddViewController: NSTableViewDataSource {
     func numberOfRows(in tableView: NSTableView) -> Int {
-        return acpi?.additions?.count ?? 0
+        return acpi?.additions.count ?? 0
     }
 
     func tableView(_ tableView: NSTableView, objectValueFor tableColumn: NSTableColumn?, row: Int) -> Any? {
-        return acpi?.additions?[row]
+        return acpi?.additions[row]
     }
 }
 

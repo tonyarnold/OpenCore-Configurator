@@ -1,25 +1,27 @@
 import Foundation
 
 class Kernel: Codable {
-    var additions: [Addition]?
-    var blocks: [Block]?
-    var patches: [Patch]?
-    var quirks: Quirks? = .init()
+    var additions = [Addition]()
+    var blocks = [Block]()
+    var emulate = Emulate()
+    var patches = [Patch]()
+    var quirks = Quirks()
 
     private enum CodingKeys: String, CodingKey {
         case additions = "Add"
         case blocks = "Block"
+        case emulate = "Emulate"
         case patches = "Patch"
         case quirks = "Quirk"
     }
 
     class Addition: Codable {
-        var bundlePath: String?
-        var comment: String?
+        var bundlePath = ""
+        var comment = ""
         var isEnabled: Bool = false
-        var executablePath: String?
-        var matchKernel: String?
-        var plistPath: String?
+        var executablePath = ""
+        var matchKernel = ""
+        var plistPath = ""
 
         private enum CodingKeys: String, CodingKey {
             case bundlePath = "BundlePath"
@@ -32,10 +34,10 @@ class Kernel: Codable {
     }
 
     class Block: Codable {
-        var comment: String?
-        var isEnabled: Bool
-        var identifier: String?
-        var matchKernel: String?
+        var comment = ""
+        var isEnabled = false
+        var identifier = ""
+        var matchKernel = ""
 
         private enum CodingKeys: String, CodingKey {
             case comment = "Comment"
@@ -45,19 +47,29 @@ class Kernel: Codable {
         }
     }
 
+    class Emulate: Codable {
+        var cpuID1Data = Data(repeating: 0, count: 16)
+        var cpuID1Mask = Data(repeating: 0, count: 16)
+
+        private enum CodingKeys: String, CodingKey {
+            case cpuID1Data = "Cpuid1Data"
+            case cpuID1Mask = "Cpuid1Mask"
+        }
+    }
+
     class Patch: Codable {
-        var base: String?
-        var comment: String?
-        var count: Int?
-        var isEnabled: Bool
-        var find: Data?
-        var identifier: String?
-        var limit: Int?
-        var mask: Data?
-        var matchKernel: String?
-        var replace: Data?
-        var replaceMask: Data?
-        var skip: Int?
+        var base = ""
+        var comment = ""
+        var count = 0
+        var isEnabled = false
+        var find = Data()
+        var identifier = ""
+        var limit = 0
+        var mask = Data()
+        var matchKernel = ""
+        var replace = Data()
+        var replaceMask = Data()
+        var skip = 0
 
         private enum CodingKeys: String, CodingKey {
             case base = "Base"
@@ -76,16 +88,26 @@ class Kernel: Codable {
     }
 
     class Quirks: Codable {
-        var appleCpuPmCfgLock: Bool = false
-        var appleXcpmCfgLock: Bool = false
-        var externalDiskIcons: Bool = false
-        var thirdPartyTrim: Bool = false
-        var xhciPortLimit: Bool = false
+        var appleCpuPmCfgLock = false
+        var appleXcpmCfgLock = false
+        var appleXcpmExtraMsrs = false
+        var customSMBIOSGuid = false
+        var disableIoMapper = false
+        var externalDiskIcons = false
+        var lapicKernelPanic = false
+        var panicNoKextDump = false
+        var thirdPartyTrim = false
+        var xhciPortLimit = false
 
         private enum CodingKeys: String, CodingKey {
             case appleCpuPmCfgLock = "AppleCpuPmCfgLock"
             case appleXcpmCfgLock = "AppleXcpmCfgLock"
+            case appleXcpmExtraMsrs = "AppleXcpmExtraMsrs"
+            case customSMBIOSGuid = "CustomSMBIOSGuid"
+            case disableIoMapper = "DisableIoMapper"
             case externalDiskIcons = "ExternalDiskIcons"
+            case lapicKernelPanic = "LapicKernelPanic"
+            case panicNoKextDump = "PanicNoKextDump"
             case thirdPartyTrim = "ThirdPartyTrim"
             case xhciPortLimit = "XhciPortLimit"
         }

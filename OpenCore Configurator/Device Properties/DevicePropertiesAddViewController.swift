@@ -81,7 +81,7 @@ final class DevicePropertiesAddViewController: NSViewController, CategoryReprese
 
 extension DevicePropertiesAddViewController: NSTableViewDataSource {
     func numberOfRows(in tableView: NSTableView) -> Int {
-        return deviceProperties?.additions?.count ?? 0
+        return deviceProperties?.additions.count ?? 0
     }
 
     func tableView(_ tableView: NSTableView, objectValueFor tableColumn: NSTableColumn?, row: Int) -> Any? {

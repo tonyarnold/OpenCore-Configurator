@@ -1,14 +1,14 @@
 class UEFI: Codable {
-    var connectDrivers: Bool? = false
-    var drivers: [String]?
-    var protocols: Protocols? = .init()
-    var quirks: Quirks? = .init()
+    var connectDrivers = false
+    var drivers = [String]()
+    var protocols = Protocols()
+    var quirks = Quirks()
 
     class Protocols: Codable {
-        var appleBootPolicy: Bool? = false
-        var consoleControl: Bool? = false
-        var dataHub: Bool? = false
-        var deviceProperties: Bool? = false
+        var appleBootPolicy = false
+        var consoleControl = false
+        var dataHub = false
+        var deviceProperties = false
 
         private enum CodingKeys: String, CodingKey {
             case appleBootPolicy = "AppleBootPolicy"
@@ -19,13 +19,14 @@ class UEFI: Codable {
     }
 
     class Quirks: Codable {
-        var exitBootServicesDelay: Int? = 0
-        var ignoreInvalidFlexRatio: Bool? = false
-        var ignoreTextInGraphics: Bool? = false
-        var provideConsoleGOP: Bool? = false
-        var releaseUSBOwnership: Bool? = false
-        var requestBootVariableRouting: Bool? = false
-        var sanitiseClearScreen: Bool? = false
+        var avoidHighAlloc = false
+        var exitBootServicesDelay: Int = 0
+        var ignoreInvalidFlexRatio = false
+        var ignoreTextInGraphics = false
+        var provideConsoleGOP = false
+        var releaseUSBOwnership = false
+        var requestBootVariableRouting = false
+        var sanitiseClearScreen = false
 
         private enum CodingKeys: String, CodingKey {
             case exitBootServicesDelay = "ExitBootServicesDelay"

@@ -15,12 +15,12 @@ final class ACPIQuirksViewController: NSViewController, CategoryRepresenting {
 
     var acpi: ACPI? {
         didSet {
-            self.updateState(with: acpi?.quirks)
+            updateState(with: acpi?.quirks)
         }
     }
 
     @IBOutlet var fadtEnableResetButton: NSButton!
-    @IBOutlet var ignoreForWindowsButton: NSButton!
+    @IBOutlet var resetHardwareSignatureButton: NSButton!
     @IBOutlet var normalizeHeadersButton: NSButton!
     @IBOutlet var rebaseRegionsButton: NSButton!
     @IBOutlet var resetLogoStatusButton: NSButton!
@@ -28,19 +28,19 @@ final class ACPIQuirksViewController: NSViewController, CategoryRepresenting {
     @IBAction func handleCheckboxToggle(_ sender: NSButton) {
         switch sender {
         case fadtEnableResetButton:
-            acpi?.quirks?.fadtEnableReset = sender.state == .on
-
-        case ignoreForWindowsButton:
-            acpi?.quirks?.ignoreForWindows = sender.state == .on
+            acpi?.quirks.fadtEnableReset = sender.state == .on
 
         case normalizeHeadersButton:
-            acpi?.quirks?.normalizeHeaders = sender.state == .on
+            acpi?.quirks.normalizeHeaders = sender.state == .on
 
         case rebaseRegionsButton:
-            acpi?.quirks?.rebaseRegions = sender.state == .on
+            acpi?.quirks.rebaseRegions = sender.state == .on
+
+        case resetHardwareSignatureButton:
+            acpi?.quirks.resetHardwareSignature = sender.state == .on
 
         case resetLogoStatusButton:
-            acpi?.quirks?.resetLogoStatus = sender.state == .on
+            acpi?.quirks.resetLogoStatus = sender.state == .on
 
         default:
             break
@@ -49,7 +49,7 @@ final class ACPIQuirksViewController: NSViewController, CategoryRepresenting {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.updateState(with: acpi?.quirks)
+        updateState(with: acpi?.quirks)
     }
 
     private func updateState(with quirks: ACPI.Quirks?) {
@@ -61,10 +61,10 @@ final class ACPIQuirksViewController: NSViewController, CategoryRepresenting {
             return
         }
 
-        fadtEnableResetButton.state = quirks.fadtEnableReset ?? false ? .on : .off
-        ignoreForWindowsButton.state = quirks.ignoreForWindows ?? false ? .on : .off
-        normalizeHeadersButton.state = quirks.normalizeHeaders ?? false ? .on : .off
-        rebaseRegionsButton.state = quirks.rebaseRegions ?? false ? .on : .off
-        resetLogoStatusButton.state = quirks.resetLogoStatus ?? false ? .on : .off
+        fadtEnableResetButton.state = quirks.fadtEnableReset ? .on : .off
+        normalizeHeadersButton.state = quirks.normalizeHeaders ? .on : .off
+        rebaseRegionsButton.state = quirks.rebaseRegions ? .on : .off
+        resetHardwareSignatureButton.state = quirks.resetHardwareSignature ? .on : .off
+        resetLogoStatusButton.state = quirks.resetLogoStatus ? .on : .off
     }
 }

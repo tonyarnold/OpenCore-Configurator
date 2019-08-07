@@ -1,10 +1,10 @@
 import Foundation
 
 class ACPI: Codable {
-    var additions: [Addition]?
-    var blocks: [Block]?
-    var patches: [Patch]?
-    var quirks: Quirks? = .init()
+    var additions = [Addition]()
+    var blocks = [Block]()
+    var patches = [Patch]()
+    var quirks = Quirks()
 
     private enum CodingKeys: String, CodingKey {
         case additions = "Add"
@@ -14,9 +14,9 @@ class ACPI: Codable {
     }
 
     class Addition: Codable, Enableable {
-        var comment: String?
-        var isEnabled: Bool = false
-        var path: String = ""
+        var comment = ""
+        var isEnabled = false
+        var path = ""
 
         private enum CodingKeys: String, CodingKey {
             case comment = "Comment"
@@ -26,12 +26,12 @@ class ACPI: Codable {
     }
 
     class Block: Codable, Enableable {
-        var blockAll: Bool? = false
-        var comment: String?
-        var isEnabled: Bool = false
-        var oemTableIdentifier: Data? = Data(repeating: 0, count: 8)
-        var tableLength: Int? = 0
-        var tableSignature: Data? = Data(repeating: 0, count: 4)
+        var blockAll = false
+        var comment = ""
+        var isEnabled = false
+        var oemTableIdentifier = Data(repeating: 0, count: 8)
+        var tableLength: Int = 0
+        var tableSignature = Data(repeating: 0, count: 4)
 
         private enum CodingKeys: String, CodingKey {
             case blockAll = "All"
@@ -44,18 +44,18 @@ class ACPI: Codable {
     }
 
     class Patch: Codable, Enableable {
-        var comment: String?
-        var count: Int? = 0
-        var isEnabled: Bool = false
-        var find: Data?
-        var limit: Int? = 0
-        var mask: Data?
-        var oemTableIdentifier: Data? = Data(repeating: 0, count: 8)
-        var replace: Data?
-        var replaceMask: Data?
-        var skip: Int? = 0
-        var tableLength: Int? = 0
-        var tableSignature: Data? = Data(repeating: 0, count: 4)
+        var comment = ""
+        var count: Int = 0
+        var isEnabled = false
+        var find = Data()
+        var limit: Int = 0
+        var mask = Data()
+        var oemTableIdentifier = Data(repeating: 0, count: 8)
+        var replace = Data()
+        var replaceMask = Data()
+        var skip: Int = 0
+        var tableLength: Int = 0
+        var tableSignature = Data(repeating: 0, count: 4)
 
         private enum CodingKeys: String, CodingKey {
             case comment = "Comment"
@@ -74,17 +74,17 @@ class ACPI: Codable {
     }
 
     class Quirks: Codable {
-        var fadtEnableReset: Bool? = false
-        var ignoreForWindows: Bool? = false
-        var normalizeHeaders: Bool? = false
-        var rebaseRegions: Bool? = false
-        var resetLogoStatus: Bool? = false
+        var fadtEnableReset = false
+        var normalizeHeaders = false
+        var rebaseRegions = false
+        var resetHardwareSignature = false
+        var resetLogoStatus = false
 
         private enum CodingKeys: String, CodingKey {
             case fadtEnableReset = "FadtEnableReset"
-            case ignoreForWindows = "IgnoreForWindows"
             case normalizeHeaders = "NormalizeHeaders"
             case rebaseRegions = "RebaseRegions"
+            case resetHardwareSignature = "ResetHwSig"
             case resetLogoStatus = "ResetLogoStatus"
         }
     }

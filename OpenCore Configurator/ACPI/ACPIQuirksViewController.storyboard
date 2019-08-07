@@ -1,8 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="HnU-3r-reT">
+<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="14854.2" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="HnU-3r-reT">
     <dependencies>
-        <deployment identifier="macosx"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="14490.70"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="14854.2"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -22,72 +21,72 @@
                                 </buttonCell>
                             </button>
                             <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="Hia-DA-1Mb">
-                                <rect key="frame" x="36" y="286" width="645" height="32"/>
+                                <rect key="frame" x="36" y="288" width="645" height="30"/>
                                 <textFieldCell key="cell" selectable="YES" id="0DZ-p7-FYi">
-                                    <font key="font" metaFont="cellTitle"/>
+                                    <font key="font" metaFont="controlContent"/>
                                     <string key="title">Provide reset register and flag in FADT table to enable reboot and shutdown on legacy hardware. Not recommended unless required.</string>
                                     <color key="textColor" name="secondaryLabelColor" catalog="System" colorSpace="catalog"/>
                                     <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                 </textFieldCell>
                             </textField>
                             <button horizontalHuggingPriority="249" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="oKl-5N-AtJ">
-                                <rect key="frame" x="18" y="252" width="663" height="18"/>
+                                <rect key="frame" x="18" y="254" width="663" height="18"/>
                                 <buttonCell key="cell" type="check" title="IgnoreForWindows" bezelStyle="regularSquare" imagePosition="left" inset="2" id="yqi-uo-pd2">
                                     <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                                     <font key="font" metaFont="system"/>
                                 </buttonCell>
                             </button>
                             <textField horizontalHuggingPriority="249" verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="qu7-4o-z56">
-                                <rect key="frame" x="36" y="214" width="645" height="32"/>
+                                <rect key="frame" x="36" y="218" width="645" height="30"/>
                                 <textFieldCell key="cell" selectable="YES" id="ohM-Ck-QYl">
-                                    <font key="font" metaFont="cellTitle"/>
+                                    <font key="font" metaFont="controlContent"/>
                                     <string key="title">Disable all sorts of ACPI modifications when booting Windows operating system. Not recommended, as ACPI tables must be compatible with any operating system regardless of the changes.</string>
                                     <color key="textColor" name="secondaryLabelColor" catalog="System" colorSpace="catalog"/>
                                     <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                 </textFieldCell>
                             </textField>
                             <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="5jU-tL-9hJ">
-                                <rect key="frame" x="18" y="180" width="663" height="18"/>
+                                <rect key="frame" x="18" y="184" width="663" height="18"/>
                                 <buttonCell key="cell" type="check" title="NormalizeHeaders" bezelStyle="regularSquare" imagePosition="left" inset="2" id="AN0-5s-j33">
                                     <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                                     <font key="font" metaFont="system"/>
                                 </buttonCell>
                             </button>
                             <textField horizontalHuggingPriority="249" verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="W9n-TJ-GdF">
-                                <rect key="frame" x="36" y="142" width="645" height="32"/>
+                                <rect key="frame" x="36" y="148" width="645" height="30"/>
                                 <textFieldCell key="cell" selectable="YES" id="f9E-Jh-b1O">
-                                    <font key="font" metaFont="cellTitle"/>
+                                    <font key="font" metaFont="controlContent"/>
                                     <string key="title">Cleanup ACPI header fields to workaround macOS ACPI implementation bug causing boot crashes. The issue is fixed in macOS Mojave (10.14).</string>
                                     <color key="textColor" name="secondaryLabelColor" catalog="System" colorSpace="catalog"/>
                                     <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                 </textFieldCell>
                             </textField>
                             <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="t3X-oP-3hx">
-                                <rect key="frame" x="18" y="108" width="663" height="18"/>
+                                <rect key="frame" x="18" y="114" width="663" height="18"/>
                                 <buttonCell key="cell" type="check" title="RebaseRegions" bezelStyle="regularSquare" imagePosition="left" inset="2" id="xfj-Dt-80d">
                                     <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                                     <font key="font" metaFont="system"/>
                                 </buttonCell>
                             </button>
                             <textField horizontalHuggingPriority="249" verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="wo2-be-Yht">
-                                <rect key="frame" x="36" y="86" width="645" height="16"/>
+                                <rect key="frame" x="36" y="93" width="645" height="15"/>
                                 <textFieldCell key="cell" selectable="YES" title="Attempt to heuristically relocate ACPI memory regions. Not recommended." id="T7e-sM-itY">
-                                    <font key="font" metaFont="cellTitle"/>
+                                    <font key="font" metaFont="controlContent"/>
                                     <color key="textColor" name="secondaryLabelColor" catalog="System" colorSpace="catalog"/>
                                     <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                 </textFieldCell>
                             </textField>
                             <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="gR2-3Y-iGc">
-                                <rect key="frame" x="18" y="52" width="663" height="18"/>
+                                <rect key="frame" x="18" y="59" width="663" height="18"/>
                                 <buttonCell key="cell" type="check" title="ResetLogoStatus" bezelStyle="regularSquare" imagePosition="left" inset="2" id="d0u-ay-0vT">
                                     <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                                     <font key="font" metaFont="system"/>
                                 </buttonCell>
                             </button>
                             <textField horizontalHuggingPriority="249" verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="AkX-io-GSS">
-                                <rect key="frame" x="36" y="30" width="645" height="16"/>
+                                <rect key="frame" x="36" y="38" width="645" height="15"/>
                                 <textFieldCell key="cell" selectable="YES" title="This works around firmwares that provide BGRT table but fail to handle screen updates afterwards." id="Ccm-96-bRK">
-                                    <font key="font" metaFont="cellTitle"/>
+                                    <font key="font" metaFont="controlContent"/>
                                     <color key="textColor" name="secondaryLabelColor" catalog="System" colorSpace="catalog"/>
                                     <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                 </textFieldCell>
@@ -132,9 +131,9 @@
                     </view>
                     <connections>
                         <outlet property="fadtEnableResetButton" destination="Aad-nZ-pTM" id="H7G-uo-LNu"/>
-                        <outlet property="ignoreForWindowsButton" destination="oKl-5N-AtJ" id="u0q-ql-fOo"/>
                         <outlet property="normalizeHeadersButton" destination="5jU-tL-9hJ" id="hta-hW-49o"/>
                         <outlet property="rebaseRegionsButton" destination="t3X-oP-3hx" id="P1s-53-CNn"/>
+                        <outlet property="resetHardwareSignatureButton" destination="oKl-5N-AtJ" id="u0q-ql-fOo"/>
                         <outlet property="resetLogoStatusButton" destination="gR2-3Y-iGc" id="YW1-eQ-I2X"/>
                     </connections>
                 </viewController>
